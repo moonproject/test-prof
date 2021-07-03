@@ -9,7 +9,7 @@ module TestProf::TagProf
         include TestProf::Logging
         using TestProf::FloatDuration
 
-        def dump(result)
+        def dump(result, custom_name:)
           msgs = []
 
           msgs <<

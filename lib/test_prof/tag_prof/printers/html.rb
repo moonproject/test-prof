@@ -9,11 +9,12 @@ module TestProf::TagProf
       class << self
         include TestProf::Logging
 
-        def dump(result)
+        def dump(result, custom_name:)
           path = TestProf::Utils::HTMLBuilder.generate(
             data: result,
             template: TEMPLATE,
-            output: OUTPUT_NAME
+            output: OUTPUT_NAME,
+            custom_name: custom_name
           )
 
           log :info, "TagProf report generated: #{path}"

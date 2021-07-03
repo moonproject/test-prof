@@ -10,10 +10,11 @@ module TestProf
         example_finished
       ].freeze
 
-      attr_reader :result, :printer
+      attr_reader :result, :printer, :custom_name
 
       def initialize
         @printer = ENV["TAG_PROF_FORMAT"] == "html" ? Printers::HTML : Printers::Simple
+        @custom_name = ENV["TEST_PROF_REPORT"]
 
         @result =
           if ENV["TAG_PROF_EVENT"].nil?
@@ -45,7 +46,7 @@ module TestProf
       end
 
       def report
-        printer.dump(result)
+        printer.dump(result, custom_name: custom_name)
       end
 
       private
