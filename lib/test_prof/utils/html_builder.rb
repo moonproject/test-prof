@@ -11,9 +11,9 @@ module TestProf
           template = File.read(TestProf.asset_path(template))
           template.sub! "/**REPORT-DATA**/", data.to_json
           if custom_name.present?
-            template.sub! "/**REPORT_NAME**/", custom_name
+            template.gsub! "/**REPORT_NAME**/", custom_name
           else
-            template.sub! "/**REPORT_NAME**/", 'TagProf'
+            template.gsub! "/**REPORT_NAME**/", 'TagProf'
           end
 
           outpath = TestProf.artifact_path(output)
